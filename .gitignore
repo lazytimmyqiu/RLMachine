@@ -1,0 +1,8 @@
+# no static library
+*.a
+
+# no object files
+*.o
+
+# ignore all files under build/
+build/
