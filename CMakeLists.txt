@@ -7,3 +7,4 @@ include_directories ("${PROJECT_SOURCE_DIR}/framework/base")
 include_directories ("${PROJECT_SOURCE_DIR}/framework/context")
 
 add_subdirectory(framework)
+add_subdirectory(instance)
