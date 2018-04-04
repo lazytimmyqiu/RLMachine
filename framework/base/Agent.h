@@ -12,7 +12,7 @@ class Agent
 public:
   virtual ~Agent() {}
     
-  virtual void step(const State&s, real_t r, Action& a) = 0;
+  virtual void Step(const State&s, real_t r, Action& a) = 0;
 
 };
 

@@ -11,7 +11,7 @@ class Environment
 {
   virtual ~Environment() {}
 
-  virtual void step(const State& s, const Action& a, State& s_next, real_t& r) = 0;
+  virtual void Step(const State& s, const Action& a, State& s_next, real_t& r) = 0;
 };
 
 }
