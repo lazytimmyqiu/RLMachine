@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Environment.h"
-#include "base.h"
 
 namespace RLMachine {
 

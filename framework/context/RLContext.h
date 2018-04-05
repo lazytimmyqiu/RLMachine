@@ -1,7 +1,6 @@
 #pragma once
 
 #include <limits>
-#include "base.h"
 #include "Environment.h"
 #include "Agent.h"
 
