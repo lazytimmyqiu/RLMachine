@@ -6,7 +6,7 @@
 
 #include "common.h"
 
-using namespce std;
+using namespace std;
 
 namespace TLib {    // 自己的轮子库
 
@@ -39,10 +39,10 @@ public:
                          const string& erro_log_file);
 
   // Get output stream for specific log level
-  static ofstream& GetStream(LogLevel level);
+  static ostream& GetStream(LogLevel level);
 
   // Output regular information and ready to receive log infos
-  static ofstream& Start(LogLevel level, 
+  static ostream& Start(LogLevel level, 
                          const string& file, 
                          int32_t line, 
                          const string& func);

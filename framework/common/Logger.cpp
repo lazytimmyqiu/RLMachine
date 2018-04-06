@@ -1,9 +1,15 @@
 #include <ctime>
 #include <cstdlib>
+#include <string>
 #include "Logger.h"
 
 using namespace std;
 using namespace TLib;
+
+
+ofstream  Logger::info_log_stream_;
+ofstream  Logger::warn_log_stream_;
+ofstream  Logger::erro_log_stream_;
 
 // flush the stream
 // if level is FATAL, abort() to trigger a coredump
@@ -19,7 +25,7 @@ Logger::~Logger()
 }
 
 
-ofstream& Logger::GetStream(LogLevel level)
+ostream& Logger::GetStream(LogLevel level)
 {
   if (level == INFO)
     return info_log_stream_.is_open() ? info_log_stream_ : cout;
@@ -36,10 +42,10 @@ ofstream& Logger::GetStream(LogLevel level)
 // + file
 // + line
 // + func
-ofstream& Logger::Start(LogLevel level, 
-                              const sring& file,
-                              int32_t line,
-                              const string& func)
+ostream& Logger::Start(LogLevel level, 
+                       const string& file,
+                       int32_t line,
+                       const string& func)
 {
   time_t tm;
   time(&tm);
@@ -47,9 +53,9 @@ ofstream& Logger::Start(LogLevel level,
   ctime_r(&tm, s_time);
 
   GetStream(level) << s_time
-                   << " [" << file << ": "
-                   << line << "] "
-                   << " (" << func << ") " << flush;
+                   << "[" << file << ": "
+                   << line << "]"
+                   << "(" << func << ") " << flush;
 }
 
 
@@ -57,9 +63,9 @@ void Logger::InitLogger(const string& info_log_file,
                         const string& warn_log_file,
                         const string& erro_log_file)
 {
-  Logger::info_log_stream_.open(info_log_file.str());
-  Logger::warn_log_stream_.open(warn_log_file.str());
-  Logger::erro_log_stream_.open(erro_log_file.str());
+  Logger::info_log_stream_.open(info_log_file.c_str());
+  Logger::warn_log_stream_.open(warn_log_file.c_str());
+  Logger::erro_log_stream_.open(erro_log_file.c_str());
 
   bool b_fail = false;
   if (!info_log_stream_.is_open()) {
