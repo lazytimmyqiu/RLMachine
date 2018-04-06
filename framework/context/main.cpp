@@ -15,9 +15,10 @@ int main()
   RLContext<index_t, index_t> rlc(g_pEnv, g_pAgent);
 
   // learning loop
-  while(true) {
+  // stop if env or agent set the quit flag
+  while(!g_pEnv->is_quit() && !g_pAgent->is_quit()) {
     rlc.Step();
   }
-  
+
   return 0;
 }
