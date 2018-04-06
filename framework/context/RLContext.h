@@ -1,6 +1,5 @@
 #pragma once
 
-#include <limits>
 #include "Environment.h"
 #include "Agent.h"
 
@@ -12,7 +11,7 @@ class RLContext
 public:
   // 初始化环境模型和Agent模型
   RLContext(Environment<State, Action>* e, Agent<State, Action>* a) 
-  : env_(e), agent_(a), r_(std::numeric_limits<real_t>::lowest())
+  : env_(e), agent_(a)
   {
   }
 
@@ -24,9 +23,6 @@ public:
 private:
   Environment<State, Action>* env_;
   Agent<State, Action>* agent_;
-
-  State state_;
-  real_t r_;
 };
 
 
@@ -36,12 +32,10 @@ template<typename State, typename Action>
 void RLContext<State, Action>::Step()
 {
   // Agent根据初始state和奖励做出动作
-  Action a;
-  agent_->Step(state_, r_, a);
+  agent_->Step(env_->GetState(), env_->GetReward());
   
-  // Environment返回下一个状态和Reward
-  State s(state_);  // 保存上一个状态
-  env_->Step(s, a, state_, r_);
+  // Environment返回Reward, 同时更新自己的State
+  env_->Step(agent_->GetAction());
 }
 
 

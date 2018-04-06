@@ -15,7 +15,7 @@ ofstream  Logger::erro_log_stream_;
 // if level is FATAL, abort() to trigger a coredump
 Logger::~Logger()
 {
-  GetStream(level_) << "\n" << flush;
+  GetStream(level_) << flush;
   if (level_ == FATAL) {
     info_log_stream_.close();
     warn_log_stream_.close();

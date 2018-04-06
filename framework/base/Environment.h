@@ -10,16 +10,25 @@ template <typename State, typename Action>
 class Environment
 {
 public:
-  Environment() : b_quit_(false) {}
-
   virtual ~Environment() {}
 
-  virtual void Step(const State& s, const Action& a, State& s_next, real_t& r) = 0;
+  virtual void Init() = 0;
 
-  virtual bool  is_quit() { return b_quit_; }
+  virtual void Finalize() = 0;
 
-private:
-  bool b_quit_;
+  virtual const State& GetState() const
+  { return state_; }
+
+  virtual real_t GetReward() const
+  { return r_; }
+
+  virtual bool  IsQuit() = 0;
+
+  virtual void Step(const Action& a) = 0;
+
+protected:
+  State state_;
+  index_t r_;
 };
 
 

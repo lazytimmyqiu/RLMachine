@@ -2,8 +2,11 @@
 
 using namespace RLMachine;
 
-void TestEnv::Step(const index_t& s, const index_t& a, index_t& s_next, real_t& r)
+void TestEnv::Step(const index_t& a)
 {
-  s_next = s + 1;   
-  r = 1;
+  // state transition
+  ++state_;
+
+  // all always reward 1
+  r_ = 1;
 }

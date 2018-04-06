@@ -2,8 +2,9 @@
 
 using namespace RLMachine;
 
-void TestAgent::Step(const index_t&s, real_t r, index_t& a)
+void TestAgent::Step(const index_t&s, real_t r)
 {
-  a = 1;
+  a_ = 1;
+  G_ += r;
 }
 
